@@ -2,7 +2,7 @@ function create_updated_collection(collection_a, object_b) {
   //在这里写入代码
   var target={};
    var array=[];
-   var array_a=[];
+
    var test=true;
    for (i=0;i<collection_a.length;i++){
      if(test){
@@ -20,8 +20,7 @@ function create_updated_collection(collection_a, object_b) {
    for (i=0;i<array.length;i++){
      for(x=0;x<object_b.value.length;x++){
        if (array[i].key==object_b.value[x]){
-     //    collection_a[i].count=collection_a[i].count-(collection_a[i].count-collection_a[i].count%3)/3;
-     array[i].count=array[i].count-parseInt(array[i].count/3);
+         array[i].count=array[i].count-parseInt(array[i].count/3);
        }
      }
    }
