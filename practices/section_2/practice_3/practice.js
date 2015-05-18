@@ -1,39 +1,29 @@
 function count_same_elements(collection) {
   //在这里写入代码
-  var target={};
   var array=[];
-var test=true;
-for (i=0;i<collection.length;i++){
-  if(i+1<collection.length){
-    num_b=collection[i+1].charAt(0);
-  }
-  num_a=collection[i].charAt(0);
-  if(test){
-    target={name:collection[i].charAt(0),summary:0};
+  var test = false;
+  for (var i=0;i<collection.length;i++){
 
+    var key = collection[i].length>2?collection[i].substring(0,1):collection[i];
+    var count = collection[i].length>2?parseInt(collection[i].substring(2)):1;
+
+    for (var j=0;j<array.length;j++){
+      if (array[j].name === key){
+        array[j].summary=array[j].summary+count;
+        test=true;
+    //    break;
+      }
+    }
+    if (!test){
+      var target={};
+      target.name=key;
+      target.summary=count;
+      array.push(target);
+    }
     test=false;
   }
-  target.summary=target.summary+1;
-  for(x=-3;x<0;x++){
-    if(collection[i].indexOf(x)>-1){
-      target.summary=target.summary+Math.abs(x);
-    }
-  }
-  for(z=0;z<11;z++){
-    if(collection[i].indexOf(z)>-1){
-      target.summary=target.summary+z-1;
-    }
-  }
-  if(num_a!=num_b){
-    array.push(target);
-    test=true;
-  }
-  if(i+1==collection.length){
-    array.push(target);
-    test=true;
-  }
-}
-return array;
+   return array;
+
 }
 
 module.exports = count_same_elements;

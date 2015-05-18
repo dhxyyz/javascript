@@ -1,25 +1,29 @@
 function create_updated_collection(collection_a, object_b) {
   //在这里写入代码
-  var target={};
   var array=[];
-  var test=true;
-  for (i=0;i<collection_a.length;i++){
-    if(test){
-      target={key:collection_a[i].charAt(0),count:0};
+  var test = false;
+  for (var i=0;i<collection_a.length;i++){
 
-      test=false;
-    }
-    target.count=target.count+1;
-    for(y=0;y<10;y++){
-      if(collection_a[i].indexOf(y)>-1){
-        target.count=target.count+y-1;
+    var key = collection_a[i].length>2?collection_a[i].substring(0,1):collection_a[i];
+    var count = collection_a[i].length>2?parseInt(collection_a[i].substring(2)):1;
+
+    for (var j=0;j<array.length;j++){
+      if (array[j].key === key){
+        array[j].count=array[j].count+count;
+        test=true;
+    //    break;
       }
     }
-    if(collection_a[i]!=collection_a[i+1]){
+    if (!test){
+      var target={};
+      target.key=key;
+      target.count=count;
       array.push(target);
-      test=true;
+      
     }
+    test=false;
   }
+//   return array;
 
   for (i=0;i<array.length;i++){
     for(x=0;x<object_b.value.length;x++){
